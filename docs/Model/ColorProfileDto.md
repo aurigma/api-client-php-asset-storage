@@ -1,0 +1,18 @@
+# # ColorProfileDto
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**metadata** | [**\Aurigma\AssetStorage\Model\ColorProfileDtoMetadata**](ColorProfileDtoMetadata.md) |  | [optional]
+**size** | **int** | File size. | [optional]
+**descriptor** | **string** | File descriptor. | [optional]
+**folder_id** | **string** | Parent folder id. | [optional]
+**tenant_id** | **int** | Entity tenant identifier. | [optional]
+**id** | **string** | Entity unique identifier. | [optional]
+**owner_id** | **string** | Entity owner identifier. | [optional]
+**name** | **string** | Entity name. | [optional]
+**custom_fields** | **array<string,mixed>** | Entity custom attributes. | [optional]
+**last_modified** | **\DateTime** | Last entity modification date and time. | [optional]
+
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
