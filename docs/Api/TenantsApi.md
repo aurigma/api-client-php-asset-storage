@@ -15,7 +15,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `tenantsCleanUp()`
 
 ```php
-tenantsCleanUp($id)
+tenantsCleanUp($id, $clean_up_parameters_model)
 ```
 
 Forcefully starts obsolete assets clean-up as background job.
@@ -54,9 +54,10 @@ $apiInstance = new Aurigma\AssetStorage\Api\TenantsApi(
     $config
 );
 $id = 56; // int | Tenant identifier.
+$clean_up_parameters_model = new \Aurigma\AssetStorage\Model\CleanUpParametersModel(); // \Aurigma\AssetStorage\Model\CleanUpParametersModel | Operation parameters.
 
 try {
-    $apiInstance->tenantsCleanUp($id);
+    $apiInstance->tenantsCleanUp($id, $clean_up_parameters_model);
 } catch (Exception $e) {
     echo 'Exception when calling TenantsApi->tenantsCleanUp: ', $e->getMessage(), PHP_EOL;
 }
@@ -67,6 +68,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **int**| Tenant identifier. | |
+| **clean_up_parameters_model** | [**\Aurigma\AssetStorage\Model\CleanUpParametersModel**](../Model/CleanUpParametersModel.md)| Operation parameters. | [optional] |
 
 ### Return type
 
@@ -78,7 +80,7 @@ void (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: `application/json`
 - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

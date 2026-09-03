@@ -32,6 +32,7 @@ docs/Model/BatchUpdateOwnerInput.md
 docs/Model/BatchUpdateParentFolderInput.md
 docs/Model/BatchUpdateResourcesOwnerInput.md
 docs/Model/BuildInfoModel.md
+docs/Model/CleanUpParametersModel.md
 docs/Model/ColorProfileClass.md
 docs/Model/ColorProfileDto.md
 docs/Model/ColorProfileDtoMetadata.md
@@ -147,6 +148,7 @@ lib/Model/BatchUpdateOwnerInput.php
 lib/Model/BatchUpdateParentFolderInput.php
 lib/Model/BatchUpdateResourcesOwnerInput.php
 lib/Model/BuildInfoModel.php
+lib/Model/CleanUpParametersModel.php
 lib/Model/ColorProfileClass.php
 lib/Model/ColorProfileDto.php
 lib/Model/ColorProfileDtoMetadata.php

@@ -143,15 +143,16 @@ class TenantsApi
      * Forcefully starts obsolete assets clean-up as background job.
      *
      * @param  int $id Tenant identifier. (required)
+     * @param  \Aurigma\AssetStorage\Model\CleanUpParametersModel $clean_up_parameters_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['tenantsCleanUp'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function tenantsCleanUp($id, string $contentType = self::contentTypes['tenantsCleanUp'][0])
+    public function tenantsCleanUp($id, $clean_up_parameters_model = null, string $contentType = self::contentTypes['tenantsCleanUp'][0])
     {
-        $this->tenantsCleanUpWithHttpInfo($id, $contentType);
+        $this->tenantsCleanUpWithHttpInfo($id, $clean_up_parameters_model, $contentType);
     }
 
     /**
@@ -160,15 +161,16 @@ class TenantsApi
      * Forcefully starts obsolete assets clean-up as background job.
      *
      * @param  int $id Tenant identifier. (required)
+     * @param  \Aurigma\AssetStorage\Model\CleanUpParametersModel $clean_up_parameters_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['tenantsCleanUp'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function tenantsCleanUpWithHttpInfo($id, string $contentType = self::contentTypes['tenantsCleanUp'][0])
+    public function tenantsCleanUpWithHttpInfo($id, $clean_up_parameters_model = null, string $contentType = self::contentTypes['tenantsCleanUp'][0])
     {
-        $request = $this->tenantsCleanUpRequest($id, $contentType);
+        $request = $this->tenantsCleanUpRequest($id, $clean_up_parameters_model, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -220,14 +222,15 @@ class TenantsApi
      * Forcefully starts obsolete assets clean-up as background job.
      *
      * @param  int $id Tenant identifier. (required)
+     * @param  \Aurigma\AssetStorage\Model\CleanUpParametersModel $clean_up_parameters_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['tenantsCleanUp'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function tenantsCleanUpAsync($id, string $contentType = self::contentTypes['tenantsCleanUp'][0])
+    public function tenantsCleanUpAsync($id, $clean_up_parameters_model = null, string $contentType = self::contentTypes['tenantsCleanUp'][0])
     {
-        return $this->tenantsCleanUpAsyncWithHttpInfo($id, $contentType)
+        return $this->tenantsCleanUpAsyncWithHttpInfo($id, $clean_up_parameters_model, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -241,15 +244,16 @@ class TenantsApi
      * Forcefully starts obsolete assets clean-up as background job.
      *
      * @param  int $id Tenant identifier. (required)
+     * @param  \Aurigma\AssetStorage\Model\CleanUpParametersModel $clean_up_parameters_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['tenantsCleanUp'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function tenantsCleanUpAsyncWithHttpInfo($id, string $contentType = self::contentTypes['tenantsCleanUp'][0])
+    public function tenantsCleanUpAsyncWithHttpInfo($id, $clean_up_parameters_model = null, string $contentType = self::contentTypes['tenantsCleanUp'][0])
     {
         $returnType = '';
-        $request = $this->tenantsCleanUpRequest($id, $contentType);
+        $request = $this->tenantsCleanUpRequest($id, $clean_up_parameters_model, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -278,12 +282,13 @@ class TenantsApi
      * Create request for operation 'tenantsCleanUp'
      *
      * @param  int $id Tenant identifier. (required)
+     * @param  \Aurigma\AssetStorage\Model\CleanUpParametersModel $clean_up_parameters_model Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['tenantsCleanUp'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function tenantsCleanUpRequest($id, string $contentType = self::contentTypes['tenantsCleanUp'][0])
+    public function tenantsCleanUpRequest($id, $clean_up_parameters_model = null, string $contentType = self::contentTypes['tenantsCleanUp'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -292,6 +297,7 @@ class TenantsApi
                 'Missing the required parameter $id when calling tenantsCleanUp'
             );
         }
+
 
 
         $resourcePath = '/api/storage/v1/tenants/{id}/clean-up';
@@ -320,7 +326,14 @@ class TenantsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($clean_up_parameters_model)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($clean_up_parameters_model));
+            } else {
+                $httpBody = $clean_up_parameters_model;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
