@@ -27,6 +27,7 @@ docs/Model/BatchCopyInput.md
 docs/Model/BatchCopyResourcesInput.md
 docs/Model/BatchDeleteInput.md
 docs/Model/BatchDeleteResourcesInput.md
+docs/Model/BatchUpdateCustomFieldsDiscreteInput.md
 docs/Model/BatchUpdateCustomFieldsInput.md
 docs/Model/BatchUpdateOwnerInput.md
 docs/Model/BatchUpdateParentFolderInput.md
@@ -46,6 +47,7 @@ docs/Model/ConflictType.md
 docs/Model/CreateFolderDto.md
 docs/Model/CreateTenantDto.md
 docs/Model/CreateTenantDtoSettings.md
+docs/Model/CustomFieldsChangesInput.md
 docs/Model/CustomFieldsUpdateStrategy.md
 docs/Model/DataSchemaDto.md
 docs/Model/DataSchemaDtoMetadata.md
@@ -143,6 +145,7 @@ lib/Model/BatchCopyInput.php
 lib/Model/BatchCopyResourcesInput.php
 lib/Model/BatchDeleteInput.php
 lib/Model/BatchDeleteResourcesInput.php
+lib/Model/BatchUpdateCustomFieldsDiscreteInput.php
 lib/Model/BatchUpdateCustomFieldsInput.php
 lib/Model/BatchUpdateOwnerInput.php
 lib/Model/BatchUpdateParentFolderInput.php
@@ -162,6 +165,7 @@ lib/Model/ConflictType.php
 lib/Model/CreateFolderDto.php
 lib/Model/CreateTenantDto.php
 lib/Model/CreateTenantDtoSettings.php
+lib/Model/CustomFieldsChangesInput.php
 lib/Model/CustomFieldsUpdateStrategy.php
 lib/Model/DataSchemaDto.php
 lib/Model/DataSchemaDtoMetadata.php

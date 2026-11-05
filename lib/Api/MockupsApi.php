@@ -83,6 +83,9 @@ class MockupsApi
         'mockupsBatchUpdateCustomFields' => [
             'application/json',
         ],
+        'mockupsBatchUpdateCustomFieldsDiscrete' => [
+            'application/json',
+        ],
         'mockupsBatchUpdateParentFolder' => [
             'application/json',
         ],
@@ -780,7 +783,7 @@ class MockupsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 404:
+                case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\AssetStorage\Model\ProblemDetails',
@@ -1047,7 +1050,7 @@ class MockupsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 404:
+                case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\AssetStorage\Model\ProblemDetails',
@@ -1243,7 +1246,7 @@ class MockupsApi
     /**
      * Operation mockupsBatchUpdateCustomFields
      *
-     * Updates custom fields values for the specified entities.
+     * Updates custom fields and their values for the specified entities.
      *
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
@@ -1261,7 +1264,7 @@ class MockupsApi
     /**
      * Operation mockupsBatchUpdateCustomFieldsWithHttpInfo
      *
-     * Updates custom fields values for the specified entities.
+     * Updates custom fields and their values for the specified entities.
      *
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
@@ -1314,7 +1317,7 @@ class MockupsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 404:
+                case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\AssetStorage\Model\ProblemDetails',
@@ -1330,7 +1333,7 @@ class MockupsApi
     /**
      * Operation mockupsBatchUpdateCustomFieldsAsync
      *
-     * Updates custom fields values for the specified entities.
+     * Updates custom fields and their values for the specified entities.
      *
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
@@ -1352,7 +1355,7 @@ class MockupsApi
     /**
      * Operation mockupsBatchUpdateCustomFieldsAsyncWithHttpInfo
      *
-     * Updates custom fields values for the specified entities.
+     * Updates custom fields and their values for the specified entities.
      *
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
@@ -1508,6 +1511,273 @@ class MockupsApi
     }
 
     /**
+     * Operation mockupsBatchUpdateCustomFieldsDiscrete
+     *
+     * Updates custom fields and their values for the specified entities.
+     *
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsDiscreteInput $batch_update_custom_fields_discrete_input Operation parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsBatchUpdateCustomFieldsDiscrete'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function mockupsBatchUpdateCustomFieldsDiscrete($tenant_id = null, $batch_update_custom_fields_discrete_input = null, string $contentType = self::contentTypes['mockupsBatchUpdateCustomFieldsDiscrete'][0])
+    {
+        $this->mockupsBatchUpdateCustomFieldsDiscreteWithHttpInfo($tenant_id, $batch_update_custom_fields_discrete_input, $contentType);
+    }
+
+    /**
+     * Operation mockupsBatchUpdateCustomFieldsDiscreteWithHttpInfo
+     *
+     * Updates custom fields and their values for the specified entities.
+     *
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsDiscreteInput $batch_update_custom_fields_discrete_input Operation parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsBatchUpdateCustomFieldsDiscrete'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function mockupsBatchUpdateCustomFieldsDiscreteWithHttpInfo($tenant_id = null, $batch_update_custom_fields_discrete_input = null, string $contentType = self::contentTypes['mockupsBatchUpdateCustomFieldsDiscrete'][0])
+    {
+        $request = $this->mockupsBatchUpdateCustomFieldsDiscreteRequest($tenant_id, $batch_update_custom_fields_discrete_input, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation mockupsBatchUpdateCustomFieldsDiscreteAsync
+     *
+     * Updates custom fields and their values for the specified entities.
+     *
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsDiscreteInput $batch_update_custom_fields_discrete_input Operation parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsBatchUpdateCustomFieldsDiscrete'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function mockupsBatchUpdateCustomFieldsDiscreteAsync($tenant_id = null, $batch_update_custom_fields_discrete_input = null, string $contentType = self::contentTypes['mockupsBatchUpdateCustomFieldsDiscrete'][0])
+    {
+        return $this->mockupsBatchUpdateCustomFieldsDiscreteAsyncWithHttpInfo($tenant_id, $batch_update_custom_fields_discrete_input, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation mockupsBatchUpdateCustomFieldsDiscreteAsyncWithHttpInfo
+     *
+     * Updates custom fields and their values for the specified entities.
+     *
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsDiscreteInput $batch_update_custom_fields_discrete_input Operation parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsBatchUpdateCustomFieldsDiscrete'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function mockupsBatchUpdateCustomFieldsDiscreteAsyncWithHttpInfo($tenant_id = null, $batch_update_custom_fields_discrete_input = null, string $contentType = self::contentTypes['mockupsBatchUpdateCustomFieldsDiscrete'][0])
+    {
+        $returnType = '';
+        $request = $this->mockupsBatchUpdateCustomFieldsDiscreteRequest($tenant_id, $batch_update_custom_fields_discrete_input, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'mockupsBatchUpdateCustomFieldsDiscrete'
+     *
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsDiscreteInput $batch_update_custom_fields_discrete_input Operation parameters. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsBatchUpdateCustomFieldsDiscrete'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function mockupsBatchUpdateCustomFieldsDiscreteRequest($tenant_id = null, $batch_update_custom_fields_discrete_input = null, string $contentType = self::contentTypes['mockupsBatchUpdateCustomFieldsDiscrete'][0])
+    {
+
+
+
+
+        $resourcePath = '/api/storage/v1/mockups/batch-update-custom-fields/discrete';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($batch_update_custom_fields_discrete_input)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($batch_update_custom_fields_discrete_input));
+            } else {
+                $httpBody = $batch_update_custom_fields_discrete_input;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation mockupsBatchUpdateParentFolder
      *
      * Updates parent folder for the specified entities and folders.
@@ -1581,18 +1851,18 @@ class MockupsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 409:
+                case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\BatchConflictDto',
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
                     break;
-                case 404:
+                case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        '\Aurigma\AssetStorage\Model\BatchConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1796,7 +2066,7 @@ class MockupsApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\MockupDto|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
+     * @return \Aurigma\AssetStorage\Model\MockupDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto
      */
     public function mockupsCopy($id, $path = null, $name = null, $strategy = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsCopy'][0])
     {
@@ -1818,7 +2088,7 @@ class MockupsApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\MockupDto|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\MockupDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function mockupsCopyWithHttpInfo($id, $path = null, $name = null, $strategy = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsCopy'][0])
     {
@@ -1887,12 +2157,12 @@ class MockupsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 409:
-                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
+                case 400:
+                    if ('\Aurigma\AssetStorage\Model\ProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ProblemDetails' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1910,7 +2180,7 @@ class MockupsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ProblemDetails', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1938,6 +2208,33 @@ class MockupsApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1981,10 +2278,10 @@ class MockupsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 409:
+                case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\ConflictDto',
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1993,6 +2290,14 @@ class MockupsApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);

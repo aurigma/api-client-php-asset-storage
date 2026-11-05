@@ -7,7 +7,8 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**designsAddPreview()**](DesignsApi.md#designsAddPreview) | **PUT** /api/storage/v1/designs/{id}/preview | Creates a preview entity for specified source entity. |
 | [**designsBatchCopy()**](DesignsApi.md#designsBatchCopy) | **POST** /api/storage/v1/designs/batch-copy | Copies the specified entities and folders to another folder. |
 | [**designsBatchDelete()**](DesignsApi.md#designsBatchDelete) | **POST** /api/storage/v1/designs/batch-delete | Deletes the specified entities and folders. |
-| [**designsBatchUpdateCustomFields()**](DesignsApi.md#designsBatchUpdateCustomFields) | **POST** /api/storage/v1/designs/batch-update-custom-fields | Updates custom fields values for the specified entities. |
+| [**designsBatchUpdateCustomFields()**](DesignsApi.md#designsBatchUpdateCustomFields) | **POST** /api/storage/v1/designs/batch-update-custom-fields | Updates custom fields and their values for the specified entities. |
+| [**designsBatchUpdateCustomFieldsDiscrete()**](DesignsApi.md#designsBatchUpdateCustomFieldsDiscrete) | **POST** /api/storage/v1/designs/batch-update-custom-fields/discrete | Updates custom fields and their values for the specified entities. |
 | [**designsBatchUpdateParentFolder()**](DesignsApi.md#designsBatchUpdateParentFolder) | **POST** /api/storage/v1/designs/batch-update-parent-folder | Updates parent folder for the specified entities and folders. |
 | [**designsCopy()**](DesignsApi.md#designsCopy) | **POST** /api/storage/v1/designs/{id} | Copies the specified entity. |
 | [**designsCreate()**](DesignsApi.md#designsCreate) | **POST** /api/storage/v1/designs | Creates a new entity. |
@@ -275,7 +276,7 @@ void (empty response body)
 designsBatchUpdateCustomFields($tenant_id, $batch_update_custom_fields_input)
 ```
 
-Updates custom fields values for the specified entities.
+Updates custom fields and their values for the specified entities.
 
 ### Example
 
@@ -326,6 +327,81 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 | **batch_update_custom_fields_input** | [**\Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput**](../Model/BatchUpdateCustomFieldsInput.md)| Operation parameters. | [optional] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `designsBatchUpdateCustomFieldsDiscrete()`
+
+```php
+designsBatchUpdateCustomFieldsDiscrete($tenant_id, $batch_update_custom_fields_discrete_input)
+```
+
+Updates custom fields and their values for the specified entities.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$tenant_id = 56; // int | Tenant ID.
+$batch_update_custom_fields_discrete_input = new \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsDiscreteInput(); // \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsDiscreteInput | Operation parameters.
+
+try {
+    $apiInstance->designsBatchUpdateCustomFieldsDiscrete($tenant_id, $batch_update_custom_fields_discrete_input);
+} catch (Exception $e) {
+    echo 'Exception when calling DesignsApi->designsBatchUpdateCustomFieldsDiscrete: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
+| **batch_update_custom_fields_discrete_input** | [**\Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsDiscreteInput**](../Model/BatchUpdateCustomFieldsDiscreteInput.md)| Operation parameters. | [optional] |
 
 ### Return type
 
