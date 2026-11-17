@@ -60,6 +60,7 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'id' => 'int',
         'settings' => '\Aurigma\AssetStorage\Model\CreateTenantDtoSettings',
+        'restrictions' => '\Aurigma\AssetStorage\Model\TenantDtoRestrictions',
         'name' => 'string',
         'custom_fields' => 'array<string,mixed>',
         'last_modified' => '\DateTime'
@@ -75,6 +76,7 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'id' => 'int32',
         'settings' => null,
+        'restrictions' => null,
         'name' => null,
         'custom_fields' => null,
         'last_modified' => 'date-time'
@@ -88,6 +90,7 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'id' => false,
         'settings' => true,
+        'restrictions' => true,
         'name' => true,
         'custom_fields' => true,
         'last_modified' => false
@@ -181,6 +184,7 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'id' => 'id',
         'settings' => 'settings',
+        'restrictions' => 'restrictions',
         'name' => 'name',
         'custom_fields' => 'customFields',
         'last_modified' => 'lastModified'
@@ -194,6 +198,7 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'id' => 'setId',
         'settings' => 'setSettings',
+        'restrictions' => 'setRestrictions',
         'name' => 'setName',
         'custom_fields' => 'setCustomFields',
         'last_modified' => 'setLastModified'
@@ -207,6 +212,7 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'id' => 'getId',
         'settings' => 'getSettings',
+        'restrictions' => 'getRestrictions',
         'name' => 'getName',
         'custom_fields' => 'getCustomFields',
         'last_modified' => 'getLastModified'
@@ -271,6 +277,7 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('settings', $data ?? [], null);
+        $this->setIfExists('restrictions', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('custom_fields', $data ?? [], null);
         $this->setIfExists('last_modified', $data ?? [], null);
@@ -375,6 +382,40 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['settings'] = $settings;
+
+        return $this;
+    }
+
+    /**
+     * Gets restrictions
+     *
+     * @return \Aurigma\AssetStorage\Model\TenantDtoRestrictions|null
+     */
+    public function getRestrictions()
+    {
+        return $this->container['restrictions'];
+    }
+
+    /**
+     * Sets restrictions
+     *
+     * @param \Aurigma\AssetStorage\Model\TenantDtoRestrictions|null $restrictions restrictions
+     *
+     * @return self
+     */
+    public function setRestrictions($restrictions)
+    {
+        if (is_null($restrictions)) {
+            array_push($this->openAPINullablesSetToNull, 'restrictions');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('restrictions', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['restrictions'] = $restrictions;
 
         return $this;
     }

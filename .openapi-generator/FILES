@@ -112,6 +112,8 @@ docs/Model/ResourceDto.md
 docs/Model/RetainableFileStorageInfoDto.md
 docs/Model/RetentionPolicy.md
 docs/Model/TenantDto.md
+docs/Model/TenantDtoRestrictions.md
+docs/Model/TenantRestrictionsDto.md
 docs/Model/TenantSettingsDto.md
 docs/Model/UpdateFolderDto.md
 docs/Model/UpdateTenantDto.md
@@ -231,6 +233,8 @@ lib/Model/ResourceDto.php
 lib/Model/RetainableFileStorageInfoDto.php
 lib/Model/RetentionPolicy.php
 lib/Model/TenantDto.php
+lib/Model/TenantDtoRestrictions.php
+lib/Model/TenantRestrictionsDto.php
 lib/Model/TenantSettingsDto.php
 lib/Model/UpdateFolderDto.php
 lib/Model/UpdateTenantDto.php
